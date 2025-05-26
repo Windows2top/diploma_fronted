@@ -10,8 +10,8 @@
 
   <main class="py-7 min-h-[50vh]">
     <div class="w-full flex flex-wrap justify-around gap-8">
-      <div v-if="tests.length === 0" class="loader">
-        卍
+      <div v-if="tests.length === 0">
+        <svg-icon type="mdi" :path="mdiLoading" class="animate-spin text-gray-500 size-20" />
       </div>
       <div
         v-else
@@ -34,9 +34,12 @@
   
 
 <script>
+import { mdiLoading } from '@mdi/js'
+
 export default {
     data() {
         return {
+            mdiLoading,
             tests: []
         };
     },

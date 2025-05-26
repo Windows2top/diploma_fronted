@@ -1,6 +1,9 @@
 <template>
   <div class="content-block">
-    <h2 class="text-3xl font-bold text-red-500 mb-6">Прогресс пользователей</h2>
+    <h2 class="flex text-3xl font-bold text-red-500 mb-6">
+      <svg-icon type="mdi" :path="mdiAccountGroupOutline" class="size-9"/>
+      Пользователи
+    </h2>
 
     <div v-if="users.length !== 0" class="scroll-content">
       <div
@@ -36,7 +39,7 @@
           v-show="user.showTests"
           class="overflow-hidden transition-all duration-300"
         >
-          <ul class="ml-1 pl-4 border-l border-gray-500 text-sm text-gray-500 space-y-1 mb-4">
+          <ul class="ml-1 pl-4 border-l-4 border-green-400 text-sm text-green-600 space-y-1 mb-4">
             <li
               v-for="test in user.tests"
               :key="test.id"
@@ -65,10 +68,13 @@
 </template>
 
 <script>
+import { mdiAccountGroupOutline } from '@mdi/js'
+
 export default {
   name: 'DeleteUser',
   data() {
     return {
+      mdiAccountGroupOutline,
       users: [],
     };
   },

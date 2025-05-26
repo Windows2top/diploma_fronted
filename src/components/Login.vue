@@ -48,44 +48,34 @@
 </template>
 
 <script>
-import Cookies from 'js-cookie';
+import { useUserStore } from '@/stores/user'
+
 export default {
-    data() {
-        return {
-            formData: {
-                email: '',
-                password: ''
-            },
-            validationErrors: {},
-        }
-    },
-    methods: {
-        submitForm() {
-            this.$axios.get('https://api.arch-pc.ru/sanctum/csrf-cookie')
-            .then(() => {
-                const token = Cookies.get('XSRF-TOKEN');
-                this.$axios.post('https://api.arch-pc.ru/login', {
-                    'email': this.formData.email,
-                    'password': this.formData.password
-                }, {
-                    headers: {
-                        'X-XSRF-TOKEN': decodeURIComponent(token)
-                    }
-                })
-                .then(response => {
-                    localStorage.setItem('sanctum_token', response.data.token);
-                    this.$router.push('/');
-                })
-                .catch(error => {
-                    this.validationErrors = error.response.data.errors;
-                    console.log(error);
-                })
-            })
-            .catch(error => {
-                console.log(error);
-            });
-        }
+  data() {
+    return {
+      formData: {
+        email: '',
+        password: ''
+      },
+      validationErrors: {}
     }
+  },
+  methods: {
+    submitForm() {
+      const userStore = useUserStore()
+
+      userStore.login(this.formData.email, this.formData.password)
+        .then(() => {
+          this.$router.push('/')
+        })
+        .catch(error => {
+          if (error.response?.data?.errors) {
+            this.validationErrors = error.response.data.errors
+          }
+          console.log(error)
+        })
+    }
+  }
 }
 </script>
 

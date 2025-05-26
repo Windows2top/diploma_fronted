@@ -3,19 +3,19 @@
     <ul class="grid grid-cols-12 items-center">
       
       <!-- Лого -->
-      <li class="hidden md:block md:col-span-2">
+      <li class="hidden lg:block lg:col-span-2">
         <router-link to="/">
           <img src="../assets/logo/logo.svg" alt="logo" class="h-10 w-auto">
         </router-link>
       </li>
-      <li class="block col-span-1 md:hidden">
+      <li class="block col-span-1 lg:hidden">
         <router-link to="/">
-          Д
+          <svg-icon type="mdi" :path="mdiHome" />
         </router-link>
       </li>
 
       <!-- Каталог и Поиск--> 
-      <li class="col-span-9 md:col-span-8 flex flex-col items-center relative">
+      <li class="col-span-10 lg:col-span-8 flex flex-col items-center relative">
         <div class="flex items-center w-full justify-center">
           <input
             v-model="searchQuery"
@@ -48,7 +48,7 @@
       </li>
 
       <!-- Вход / Регистрация / Пользователь -->
-      <li class="col-span-2 md:col-span-2 flex justify-end">
+      <li class="col-span-1 lg:col-span-2 flex justify-end">
         <template v-if="!storedUser">
           <router-link
             to="/login"
@@ -66,15 +66,15 @@
         <template v-else>
           <router-link
             to="/user"
-            class="text-white font-bold"
+            class="hidden lg:block text-white font-bold"
           >
             {{ storedUser.name }}
           </router-link>
           <router-link
             to="/user"
-            class="text-white font-bold"
+            class="block lg:hidden text-white font-bold"
           >
-            dsfsdfdfds
+            <svg-icon type="mdi" :path="mdiAccountCircleOutline" class="text-white" />
           </router-link>
         </template>
       </li>
@@ -84,51 +84,43 @@
 </template>
 
 <script>
+import { useUserStore } from '@/stores/user'
+import { mdiAccountCircleOutline, mdiHome } from '@mdi/js'
+
 export default {
   data() {
     return {
-      storedUser: null,
+      mdiAccountCircleOutline,
+      mdiHome,
       searchQuery: '',
       tests: []
-    };
+    }
   },
   computed: {
     filteredTests() {
-      const query = this.searchQuery.toLowerCase();
-      return this.tests.filter(test => test.title.toLowerCase().includes(query));
+      const query = this.searchQuery.toLowerCase()
+      return this.tests.filter(test => test.title.toLowerCase().includes(query))
+    },
+    storedUser() {
+      return useUserStore().user
     }
   },
   mounted() {
-    // Получаем пользователя
-    const sanctum_token = localStorage.getItem('sanctum_token');
-    if (sanctum_token) {
-      this.$axios.get('https://api.arch-pc.ru/api/user', {
-        headers: {
-          'Authorization': `Bearer ${sanctum_token}`
-        }
-      })
-      .then(response => {
-        const userData = response.data;
-        this.storedUser = userData;
-        localStorage.setItem('user', JSON.stringify(userData));
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    const userStore = useUserStore()
+
+    if (!userStore.user) {
+      userStore.fetchUser()
     }
 
-    // Загружаем список тестов для поиска
-    this.$axios.get('https://api.arch-pc.ru/api/tests')
+    this.$axios.get('/api/tests')
       .then(response => {
-        this.tests = response.data;
+        this.tests = response.data
       })
-      .catch(error => {
-        console.error(error);
-      });
+      .catch(console.error)
   },
   methods: {
     clearSearch() {
-      this.searchQuery = null;
+      this.searchQuery = ''
     }
   }
 }

@@ -2,7 +2,10 @@
   <div class="bg-gray-50 min-h-screen py-10">
     <UserProgress />
       <div class="content-block">
-        <h2 class="text-3xl font-bold text-green-500 mb-6">Заявки на регистрацию</h2>
+        <h2 class="flex text-3xl font-bold text-green-500 mb-6">
+          <svg-icon type="mdi" :path="mdiAccountPlusOutline" class="size-9"/>
+          Заявки на регистрацию
+        </h2>
         <Logout />
 
   
@@ -43,10 +46,13 @@
 import Cookies from 'js-cookie';
 import Logout from './Logout.vue';
 import UserProgress from './UserProgress.vue';
+import { mdiAccountPlusOutline } from '@mdi/js'
+
 export default {
     components: { Logout, UserProgress },
     data() {
         return {
+            mdiAccountPlusOutline,
             applications: {}
         }
     },
