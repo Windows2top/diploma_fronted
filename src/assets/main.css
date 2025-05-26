@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../assets/fonts/Roboto-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../assets/fonts/Roboto-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../assets/fonts/Roboto-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+body {
+    @apply bg-gray-100;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+}
+
+h1 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+}
+
+h2, h3, h4, h5 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+}
+
+.main-btn {
+    @apply rounded-lg shadow-lg hover:rounded-[48px] px-4 py-2 transition-all duration-150 cursor-pointer;
+}
+
+.loader {
+    @apply text-center text-gray-500 text-6xl font-bold animate-spin;
+}
+
+.content-block {
+    @apply max-w-6xl mx-auto bg-white p-6 mb-2 rounded-lg shadow-lg;
+}
+
+.scroll-content {
+    @apply space-y-6 mt-4 pb-2 max-h-[400px] overflow-y-auto;
+}
