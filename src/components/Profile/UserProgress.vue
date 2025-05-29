@@ -82,7 +82,7 @@ export default {
     const sanctum_token = localStorage.getItem('sanctum_token');
 
     this.$axios
-      .get('https://api.arch-pc.ru/api/users/tests', {
+      .get('/api/users/tests', {
         headers: {
           Authorization: `Bearer ${sanctum_token}`,
         },
@@ -102,7 +102,7 @@ export default {
       const sanctum_token = localStorage.getItem('sanctum_token');
 
       this.$axios
-        .delete(`https://api.arch-pc.ru/api/user/${id}`, {
+        .delete(`/api/user/${id}`, {
           headers: {
             Authorization: `Bearer ${sanctum_token}`,
           },

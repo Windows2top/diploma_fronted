@@ -36,7 +36,7 @@ export default {
     mounted() {
         const sanctum_token = localStorage.getItem('sanctum_token');
 
-        this.$axios.get('https://api.arch-pc.ru/api/user/tests', {
+        this.$axios.get('/api/user/tests', {
             headers: {
                 'Authorization': `Bearer ${sanctum_token}`
             }

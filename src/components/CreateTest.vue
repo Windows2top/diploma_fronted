@@ -185,7 +185,7 @@ export default {
         submitTest() {
           const sanctum_token = localStorage.getItem('sanctum_token');
 
-          this.$axios.post('https://api.arch-pc.ru/api/tests', this.test, {
+          this.$axios.post('/api/tests', this.test, {
             headers: {
                 'Authorization': `Bearer ${sanctum_token}`
             }

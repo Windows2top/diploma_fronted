@@ -44,7 +44,7 @@ export default {
         };
     },
     mounted() {
-        this.$axios.get('https://api.arch-pc.ru/api/tests')
+        this.$axios.get('/api/tests')
         .then(response => {
             this.tests = response.data;
         })

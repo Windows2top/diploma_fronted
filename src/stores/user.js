@@ -15,11 +15,11 @@ export const useUserStore = defineStore('user', {
 
   actions: {
     login(email, password) {
-      return axios.get('https://api.arch-pc.ru/sanctum/csrf-cookie')
+      return axios.get('/sanctum/csrf-cookie')
         .then(() => {
           const csrfToken = Cookies.get('XSRF-TOKEN')
 
-          return axios.post('https://api.arch-pc.ru/login', {
+          return axios.post('/login', {
             email,
             password
           }, {
@@ -44,7 +44,7 @@ export const useUserStore = defineStore('user', {
       const token = localStorage.getItem('sanctum_token')
       if (!token) return Promise.resolve()
 
-      return axios.get('https://api.arch-pc.ru/api/user', {
+      return axios.get('/api/user', {
         headers: {
           Authorization: `Bearer ${token}`
         }

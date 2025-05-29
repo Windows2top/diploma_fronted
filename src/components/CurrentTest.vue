@@ -30,7 +30,7 @@ export default {
         }
     },
     mounted() {
-        this.$axios.get(`https://api.arch-pc.ru/api/tests/${this.id}`)
+        this.$axios.get(`/api/tests/${this.id}`)
         .then(response => {
             this.test = response.data;
         })

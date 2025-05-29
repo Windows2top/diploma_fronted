@@ -16,10 +16,10 @@ import Cookies from 'js-cookie';
 export default {
     methods: {
         logout() {
-            this.$axios.get('https://api.arch-pc.ru/sanctum/csrf-cookie')
+            this.$axios.get('/sanctum/csrf-cookie')
             .then(() => {
                 const token = Cookies.get('XSRF-TOKEN');
-                this.$axios.post('https://api.arch-pc.ru/logout', {}, {
+                this.$axios.post('/logout', {}, {
                     headers: {
                         'X-XSRF-TOKEN': decodeURIComponent(token)
                     }

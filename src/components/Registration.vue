@@ -98,10 +98,10 @@ export default {
     },
     methods: {
         submitForm() {
-            this.$axios.get('https://api.arch-pc.ru/sanctum/csrf-cookie')
+            this.$axios.get('/sanctum/csrf-cookie')
             .then(() => {
                 const token = Cookies.get('XSRF-TOKEN');
-                this.$axios.post('https://api.arch-pc.ru/registration', {
+                this.$axios.post('/registration', {
                     'name': this.formData.name,
                     'email': this.formData.email,
                     'role': this.formData.role,

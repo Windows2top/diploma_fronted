@@ -15,6 +15,7 @@ const pinia = createPinia()
 app.component('svg-icon', SvgIcon)
 
 app.config.globalProperties.$axios = axios
+axios.defaults.baseURL = 'https://api.arch-pc.ru'
 axios.defaults.withCredentials = true
 
 app.use(pinia)

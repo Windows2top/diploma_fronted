@@ -59,7 +59,7 @@ export default {
     mounted() {
         const sanctum_token = localStorage.getItem('sanctum_token');
         
-        this.$axios.get('https://api.arch-pc.ru/api/applications', {
+        this.$axios.get('/api/applications', {
             headers: {
                 'Authorization': `Bearer ${sanctum_token}`
             }
@@ -72,10 +72,10 @@ export default {
     },
     methods: {
         acceptUser(id) {
-            this.$axios.get('https://api.arch-pc.ru/sanctum/csrf-cookie')
+            this.$axios.get('/sanctum/csrf-cookie')
             .then(() => {
                 const token = Cookies.get('XSRF-TOKEN');
-                this.$axios.post(`https://api.arch-pc.ru/accept-application/${id}`, { 
+                this.$axios.post(`/accept-application/${id}`, { 
                 }, {
                     headers: {
                         'X-XSRF-TOKEN': decodeURIComponent(token)
@@ -94,10 +94,10 @@ export default {
             })
         },
         rejectUser(id) {
-          this.$axios.get('https://api.arch-pc.ru/sanctum/csrf-cookie')
+          this.$axios.get('/sanctum/csrf-cookie')
           .then(() => {
               const token = Cookies.get('XSRF-TOKEN');
-              this.$axios.delete(`https://api.arch-pc.ru/accept-application/${id}`, {
+              this.$axios.delete(`/accept-application/${id}`, {
                   headers: {
                       'X-XSRF-TOKEN': decodeURIComponent(token)
                   }

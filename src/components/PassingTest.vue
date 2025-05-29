@@ -78,7 +78,7 @@
         this.$router.push('/registration');
       }
   
-      this.$axios.get(`https://api.arch-pc.ru/api/tests/${this.id}/questions`, {
+      this.$axios.get(`/api/tests/${this.id}/questions`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -107,7 +107,7 @@
   
         const token = localStorage.getItem('sanctum_token');
   
-        this.$axios.post(`https://api.arch-pc.ru/api/tests/${this.id}/questions`, payload, {
+        this.$axios.post(`/api/tests/${this.id}/questions`, payload, {
           headers: {
             'Authorization': `Bearer ${token}`
           }

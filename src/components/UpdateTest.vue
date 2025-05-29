@@ -161,7 +161,7 @@ export default {
     mounted() {
         const sanctum_token = localStorage.getItem('sanctum_token');
 
-        this.$axios.get(`https://api.arch-pc.ru/api/tests/${this.id}/edit`,
+        this.$axios.get(`/api/tests/${this.id}/edit`,
             {
                 headers: {
                     'Authorization': `Bearer ${sanctum_token}`
@@ -205,7 +205,7 @@ export default {
         submitTest() {
             const sanctum_token = localStorage.getItem('sanctum_token');
 
-            this.$axios.patch(`https://api.arch-pc.ru/api/tests/${this.id}`, this.test, {
+            this.$axios.patch(`/api/tests/${this.id}`, this.test, {
                 headers: {
                     'Authorization': `Bearer ${sanctum_token}`
                 }

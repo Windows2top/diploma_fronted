@@ -64,7 +64,7 @@ export default {
         };
     },
     mounted() {
-        this.$axios.get('https://api.arch-pc.ru/api/tests')
+        this.$axios.get('/api/tests')
         .then(response => {
             this.tests = response.data;
         })
@@ -76,7 +76,7 @@ export default {
         deleteTest(id) {
             const sanctum_token = localStorage.getItem('sanctum_token');
 
-            this.$axios.delete(`https://api.arch-pc.ru/api/tests/${id}`, {
+            this.$axios.delete(`/api/tests/${id}`, {
                 headers: {
                     'Authorization': `Bearer ${sanctum_token}`
                 }
