@@ -15,7 +15,7 @@
       </li>
 
       <!-- Каталог и Поиск--> 
-      <li class="col-span-10 lg:col-span-8 flex flex-col items-center relative">
+      <li class="col-span-9 lg:col-span-8 flex flex-col items-center relative">
         <div class="flex items-center w-full justify-center">
           <input
             v-model="searchQuery"
@@ -48,7 +48,7 @@
       </li>
 
       <!-- Вход / Регистрация / Пользователь -->
-      <li class="col-span-1 lg:col-span-2 flex justify-end">
+      <li class="col-span-2 flex justify-end">
         <template v-if="!storedUser">
           <router-link
             to="/login"
