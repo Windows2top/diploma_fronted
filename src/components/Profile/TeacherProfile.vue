@@ -1,4 +1,5 @@
 <template>
+    <UserData />
     <div class="content-block">
       <!-- Cоздания теста -->
       <router-link
@@ -8,8 +9,7 @@
       >
         Создать лекцию
       </router-link>
-      <Logout />
-  
+
       <div class="mt-8 min-h-[70vh] max-h-[400px] overflow-x-hidden overflow-y-auto">
         <transition-group name="soft-delete">
           <h3 class="text-2xl font-bold text-gray-800 mb-6">Лекции</h3>
@@ -53,10 +53,10 @@
 </template>
   
 <script>
-import Logout from './Logout.vue';
+import UserData from './UserData.vue';
 import UserProgress from './UserProgress.vue';
 export default {
-    components: { Logout, UserProgress },
+    components: { UserData, UserProgress },
     data() {
         return {
             tests: [],
