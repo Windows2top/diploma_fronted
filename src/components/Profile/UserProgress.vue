@@ -44,7 +44,7 @@
               v-for="test in user.tests"
               :key="test.id"
             >
-              • {{ test.title }}
+              • {{ test.title }}: {{ test.pivot.grade }}
             </li>
             <li v-if="user.tests.length === 0">
               Тесты отсутствуют
