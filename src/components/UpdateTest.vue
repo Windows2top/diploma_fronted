@@ -93,6 +93,9 @@
                   @change="setSingleCorrect(qIndex, aIndex)"
                 />
               </label>
+              <ul v-if="validationErrors[`questions.${qIndex}.answers.${aIndex}.title`]" class="mt-4 text-red-500">
+                <li v-for="(err, index) in validationErrors[`questions.${qIndex}.answers.${aIndex}.title`]">{{ err }}</li>
+              </ul>
             </div>
             <button
               type="button"

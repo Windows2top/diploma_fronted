@@ -93,6 +93,9 @@
                   class="accent-green-400 mr-2"
                 />
               </label>
+              <ul v-if="validationErrors[`questions.${qIndex}.answers.${aIndex}.title`]" class="mt-4 text-red-500">
+                <li v-for="(err, index) in validationErrors[`questions.${qIndex}.answers.${aIndex}.title`]">{{ err }}</li>
+              </ul>
             </div>
             <button
               type="button"
@@ -143,6 +146,7 @@
       <ul v-if="validationErrors.questions" class="mt-4 text-red-500">
         <li v-for="(err, index) in validationErrors.questions" :key="index">{{ err }}</li>
       </ul>
+      <p v-if="message" class="text-green-500 font-bold text-lg mt-4">{{ message }}</p>
     </div>
 </template>
   
@@ -156,6 +160,7 @@ export default {
             description: '',
             questions: []
         },
+        message: '',
         validationErrors: {}
         }
     },
@@ -198,10 +203,7 @@ export default {
                 lection: '',
                 questions: []
             };
-            console.log(this.test);
-            this.$router.push('/user').then(() => {
-                window.location.reload();
-            });
+            this.message = response.data.message;
           })
           .catch(error => {
             console.error(error.response.data.errors);
