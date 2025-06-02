@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main class="min-h-screen">
     <router-view></router-view>
     <component :is="currentComponent"></component>
   </main>
@@ -18,7 +18,7 @@ export default {
       return useUserStore().user
     },
     currentComponent() {
-      if (!this.userData) return ErrorPage
+      if (!localStorage.getItem('sanctum_token')) return ErrorPage
 
       switch (this.userData.role) {
         case 'student':
