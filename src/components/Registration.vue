@@ -101,7 +101,7 @@ export default {
             this.$axios.get('/sanctum/csrf-cookie')
             .then(() => {
                 const token = Cookies.get('XSRF-TOKEN');
-                this.$axios.post('/registration', {
+                this.$axios.post('/api/registration', {
                     'name': this.formData.name,
                     'email': this.formData.email,
                     'role': this.formData.role,

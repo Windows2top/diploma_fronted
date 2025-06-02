@@ -19,9 +19,10 @@ export const useUserStore = defineStore('user', {
         .then(() => {
           const csrfToken = Cookies.get('XSRF-TOKEN')
 
-          return axios.post('/login', {
+          return axios.post('/api/login', {
             email,
-            password
+            password,
+            userAgent: navigator.userAgent
           }, {
             headers: {
               'X-XSRF-TOKEN': decodeURIComponent(csrfToken)
@@ -56,7 +57,6 @@ export const useUserStore = defineStore('user', {
         })
         .catch(error => {
           console.error('Ошибка при получении пользователя:', error)
-          this.logout()
         })
     },
 

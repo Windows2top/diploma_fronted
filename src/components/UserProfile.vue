@@ -27,8 +27,6 @@ export default {
           return TeacherProfile
         case 'admin':
           return AdminProfile
-        default:
-          return ErrorPage
       }
     }
   },

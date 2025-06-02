@@ -19,9 +19,11 @@ export default {
             this.$axios.get('/sanctum/csrf-cookie')
             .then(() => {
                 const token = Cookies.get('XSRF-TOKEN');
-                this.$axios.post('/logout', {}, {
+                const sanctum_token = localStorage.getItem('sanctum_token');
+                this.$axios.post('/api/logout', {}, {
                     headers: {
-                        'X-XSRF-TOKEN': decodeURIComponent(token)
+                        'X-XSRF-TOKEN': decodeURIComponent(token),
+                        'Authorization': `Bearer ${sanctum_token}`
                     }
                 })
                 .then(response => {

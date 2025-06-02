@@ -10,6 +10,9 @@
           Проверить себя
         </router-link>
       </div>
+      <div v-else-if="error === 404">
+        <ErrorPage />
+      </div>
       <div v-else class="text-center">
         <h5 class="text-lg text-gray-500">Загрузка...</h5>
       </div>
@@ -17,10 +20,13 @@
 </template>
 
 <script>
+import ErrorPage from './ErrorPage.vue';
 export default {
+    components: { ErrorPage },
     data () {
         return {
-            test: ''
+            test: '',
+            error: ''
         }
     },
     props: {
@@ -35,7 +41,7 @@ export default {
             this.test = response.data;
         })
         .catch(error => {
-            console.error(error);
+            this.error = error.request.status;
         });
 
     }

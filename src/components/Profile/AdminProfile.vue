@@ -74,10 +74,12 @@ export default {
             this.$axios.get('/sanctum/csrf-cookie')
             .then(() => {
                 const token = Cookies.get('XSRF-TOKEN');
-                this.$axios.post(`/accept-application/${id}`, { 
+                const sanctum_token = localStorage.getItem('sanctum_token');
+                this.$axios.post(`/api/accept-application/${id}`, { 
                 }, {
                     headers: {
-                        'X-XSRF-TOKEN': decodeURIComponent(token)
+                        'X-XSRF-TOKEN': decodeURIComponent(token),
+                        'Authorization': `Bearer ${sanctum_token}`
                     }
                 })
                 .then(response => {
@@ -96,9 +98,11 @@ export default {
           this.$axios.get('/sanctum/csrf-cookie')
           .then(() => {
               const token = Cookies.get('XSRF-TOKEN');
-              this.$axios.delete(`/accept-application/${id}`, {
+              const sanctum_token = localStorage.getItem('sanctum_token');
+              this.$axios.delete(`/api/accept-application/${id}`, {
                   headers: {
-                      'X-XSRF-TOKEN': decodeURIComponent(token)
+                      'X-XSRF-TOKEN': decodeURIComponent(token),
+                      'Authorization': `Bearer ${sanctum_token}`
                   }
               })
               .then(response => {
