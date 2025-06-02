@@ -26,6 +26,7 @@
           <label class="block text-lg font-medium text-gray-700">Лекция:</label>
           <textarea
             v-model="test.lection"
+            rows="6"
             class="mt-2 p-3 border border-gray-300 rounded-md w-full"
           ></textarea>
         </div>
