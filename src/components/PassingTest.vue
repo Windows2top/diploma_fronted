@@ -45,7 +45,7 @@
     </form>
 
     <p v-if="testResult !== null" class="text-center mt-6 text-xl">
-      {{ testResult.message }}. Правильно отвечены {{ testResult.correct_questions }} из {{ testResult.total_questions }} вопросов
+      Ваша оценка {{ testResult.grade }}. Правильно отвечены {{ testResult.correct_questions }} из {{ testResult.total_questions }} вопросов.
     </p>
 
     <div v-if="testResult !== null" class="text-center mt-6 min-h-[70vh]">

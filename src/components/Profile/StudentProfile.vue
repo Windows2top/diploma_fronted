@@ -11,6 +11,7 @@
             <div v-for="(completeTest, index) in completeTests" :key="index" class="bg-white p-4 rounded-lg shadow-md">
                 <h3 class="inline-block font-semibold text-xl text-green-600">{{ completeTest.title }}</h3>
                 <p>{{ completeTest.description }}</p>
+                <p>Оценка: {{ completeTest.pivot.grade }}</p>
             </div>
             </div>
             <div v-else class="text-center text-gray-500">
@@ -22,9 +23,11 @@
 </template>
 
 <script>
+import UserData from './UserData.vue';
 import { mdiCertificateOutline } from '@mdi/js'
 
 export default {
+    components: { UserData },
     data() {
         return {
             mdiCertificateOutline,
