@@ -63,7 +63,9 @@ export default {
   methods: {
     submitForm() {
       const userStore = useUserStore()
-
+      
+      this.validationErrors = {}
+      
       userStore.login(this.formData.email, this.formData.password)
         .then(() => {
           this.$router.push('/')
