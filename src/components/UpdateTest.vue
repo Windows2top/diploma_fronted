@@ -113,6 +113,9 @@
           >
             Добавить ответ
           </button>
+          <ul v-if="validationErrors[`questions.${qIndex}.answers`]" class="mt-4 text-red-500">
+            <li v-for="(err, index) in validationErrors[`questions.${qIndex}.answers`]">{{ err }}</li>
+          </ul>
           <button
             type="button"
             @click="removeQuestion(qIndex)"
@@ -153,7 +156,8 @@ export default {
             lection: '',
             questions: []
         },
-        message: null
+        message: null,
+        validationErrors: {}
         }
     },
     props: {
@@ -220,7 +224,9 @@ export default {
                 console.log(this.test);
             })
             .catch(error => {
-                console.log(error);
+                console.error(error.response.data.errors);
+                this.validationErrors = error.response.data.errors;
+                console.log(this.validationErrors);
             })
         }
     }
