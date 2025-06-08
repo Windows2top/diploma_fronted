@@ -63,5 +63,8 @@ export default createRouter({
         name: 'PassingTest',
         component: PassingTest,
         props: true 
-    }]
+    }],
+    scrollBehavior(to, from, savedPosition) {
+        return { top: 0 };
+    }
 })

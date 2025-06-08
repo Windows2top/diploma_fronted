@@ -83,6 +83,7 @@
                   v-model="answer.is_correct"
                   true-value="1"
                   false-value="0"
+                  class="accent-green-400 mr-2"
                 />
                 <!-- Реши проблему нажатй -->
                 <input
@@ -91,6 +92,7 @@
                   :name="'correct-' + qIndex"
                   :checked="answer.is_correct"
                   @change="setSingleCorrect(qIndex, aIndex)"
+                  class="accent-green-400 mr-2"
                 />
               </label>
               <ul v-if="validationErrors[`questions.${qIndex}.answers.${aIndex}.title`]" class="mt-4 text-red-500">
